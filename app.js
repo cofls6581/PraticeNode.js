@@ -2,7 +2,13 @@
 //Routing
 var express=require('express');
 var app=express(); //application return
+app.locals.pretty = true; //jade코드 looks pretty
+app.set('views','./views'); //jade파일들 view dir에 보관
+app.set('view engine','jade');
 app.use(express.static('public')); ///정적파일추가 //localhost:1500/~~
+app.get('/template',function(req,res){ //temp라는 탬플릿 파일을 랜더링
+  res.render('temp', {time:Date(),titlename:'Jade'});
+})
 app.get('/img',function(req,res){
   res.send('Hi icebear! <img src="/bear.jpg">')
 });
